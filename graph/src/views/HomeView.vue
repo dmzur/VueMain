@@ -2,12 +2,12 @@
   <div class="home">
     <header>
       <div class="title">My personal costs</div>
-      <div>Total price {{ getFullPaymentValue }}</div>
+      <div>Total Price = {{getFullPaymentValue}} </div>
     </header>
     <main>
-      <AddPaymentForm />
-      <PaymentsDisplay :items="currentElements" />
-      <MyPagination :cur="cur" :length="12" :n="n" @changePage="changePage" />
+       <AddPaymentForm />
+      <PaymentsDisplay :items="currentElements"/>
+      <MyPagination :cur="cur" :length="getPaymentsList.length" :n="n" @changePage="changePage"/>
     </main>
   </div>
 </template>
@@ -15,55 +15,48 @@
 <script>
 import PaymentsDisplay from "@/components/PaymentsDisplay.vue";
 import AddPaymentForm from "@/components/AddPaymentForm.vue";
+import { mapMutations, mapGetters } from "vuex";
 import MyPagination from "@/components/MyPagination.vue";
-import { mapGetters, mapMutations } from "vuex";
-
 export default {
   name: "HomeView",
   components: {
     PaymentsDisplay,
     AddPaymentForm,
-    MyPagination,
-  },
+    MyPagination
+},
   data() {
     return {
       cur: 1,
-      n: 3,
+      n: 10,
     };
   },
   computed: {
-    // getFPV (){
-    // return this.$store.getters.getFullPaymentValue
-    // }
-    ...mapGetters(["getFullPaymentValue", "getPaymentsList"]),
-    currentElements() {
-      return this.getPaymentsList.slice(
-        this.n * (this.cur - 1),
-        this.n * (this.cur - 1) + this.n
-      );
-    },
+    ...mapGetters(['getFullPaymentValue', 'getPaymentsList']),
+    currentElements(){
+      return this.getPaymentsList.slice(this.n * (this.cur - 1), this.n * (this.cur -1) + this.n)
+    }
   },
   methods: {
     ...mapMutations({
-      MyMutation: "setPaymentsListData",
+      MyMutation: 'setPaymentsListData'
     }),
     addPaymentData(data) {
-      this.paymentsList.push(data);
+      this.paymentsList.push(data)
     },
-    changePage(p) {
-      this.cur = p;
-      this.$store.dispatch("fetchData", p);
-    },
+    changePage(p){
+      this.cur = p
+    }
   },
-  created() {
-    this.$store.dispatch("fetchData", this.cur);
+ created() {
+    this.$store.dispatch('fetchData')
     // this.$store.commit('setPaymentsListData', this.fetchData())
-    // this.MyMutation(this.fetchData());
   },
+  mounted() {
+    if(!this.$route.params?.page || isNaN(this.$route.params.page)) return
+    this.cur = Number(this.$route.params.page)
+  }
 };
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 .title {
   font-size: 20px;

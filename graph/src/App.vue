@@ -1,18 +1,29 @@
 <template>
   <div id="app">
-    <HomeView />
+    <nav>
+      <!-- <div class="clickItem" @click="goToAboutPage">
+        <span>
+          GoToAbout
+        </span>
+      </div> -->
+      <router-link :to="{name: 'Dashboard', params: {page: '1'} }">Dashboard</router-link> |
+      <router-link to="/about">About</router-link> |
+      <router-link to="/notfound">notfound</router-link>
+    </nav>
+    <router-view/>
   </div>
 </template>
 
 <script>
-import HomeView from "./views/HomeView.vue";
-
 export default {
-  name: "App",
-  components: {
-    HomeView,
+  methods: {
+    goToAboutPage() {
+      this.$router.push({
+        name: "Dashboard",
+      })
+    }
   },
-};
+}
 </script>
 
 <style lang="scss">
@@ -22,6 +33,18 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+h1{
+  font-size: 50px;
+}
+nav {
+  padding: 30px;
+  a {
+    font-weight: bold;
+    color: #2c3e50;
+    &.router-link-exact-active {
+      color: #42b983;
+    }
+  }
 }
 </style>
