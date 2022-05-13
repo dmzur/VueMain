@@ -25,6 +25,10 @@ const routes = [
         component: NotFound
     },
     {
+        path: '/',
+        redirect: {name: 'Dashboard'}
+    },
+    {
         path: '*',
         redirect: { name: 'NotFound' }
     },

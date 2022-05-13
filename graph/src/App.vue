@@ -20,6 +20,9 @@ export default {
     goToAboutPage() {
       this.$router.push({
         name: "Dashboard",
+        params:{
+          page: "3"
+        }
       })
     }
   },
