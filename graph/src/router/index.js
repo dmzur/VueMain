@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import AboutView from '../views/About/AboutView.vue'
 import NotFound from '../views/NotFoundView.vue'
+import AddPaymentForm from '../components/AddPaymentForm.vue'
 
 Vue.use(Router)
 
@@ -25,9 +26,14 @@ const routes = [
         component: NotFound
     },
     {
-        path: '/',
-        redirect: {name: 'Dashboard'}
+        path: '/add/:section/:category',
+        name: "AddPaymentForm",
+        component: AddPaymentForm
     },
+    // {
+    //     path: '/',
+    //     redirect: {name: 'Dashboard'}
+    // },
     {
         path: '*',
         redirect: { name: 'NotFound' }
