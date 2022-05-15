@@ -46,16 +46,14 @@ export default {
   },
   mounted() {
     const {category, section} = this.$route.params
-    if(!category || !section){
-      return
-    }
-    this.category = category
     const {value} = this.$route.query
-    if(!value) return
+    
+    if(!category || !section || !value) return
+    
+    this.category = category
     this.value = value
-    if(this.value && this.category){
-      this.onClickSave()
-    }
+    this.onClickSave()
+    
   },
 }
 </script>
