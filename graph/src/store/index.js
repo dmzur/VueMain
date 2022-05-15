@@ -47,7 +47,7 @@ export default new Vuex.Store({
               id: Math.floor(Math.random()* Math.floor(Math.random() * Date.now()) +i)
             })
           } resolve(items)
-        },2000)
+        },500)
       }).then(res=> {
         commit('setPaymentsListData', res)
       })
@@ -56,7 +56,7 @@ export default new Vuex.Store({
       return new Promise((resolve)=> {
         setTimeout(()=>{
           resolve (['Food', 'Transport', 'Education', 'Entertainment', 'Sport'])
-        },1000)
+        },0)
       }).then(res => { commit('setCategories', res)})
     }
   },

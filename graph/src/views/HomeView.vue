@@ -47,10 +47,10 @@ export default {
       this.cur = p
     }
   },
- created() {
-    this.$store.dispatch('fetchData')
+//  created() {
+//     this.$store.dispatch('fetchData')
     // this.$store.commit('setPaymentsListData', this.fetchData())
-  },
+  // },
   mounted() {
     if(!this.$route.params?.page || isNaN(this.$route.params.page)) return
     this.cur = Number(this.$route.params.page)
