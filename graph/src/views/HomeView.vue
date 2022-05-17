@@ -5,7 +5,7 @@
       <div>Total Price = {{getFullPaymentValue}} </div>
     </header>
     <main>
-      <button @click="openModalForm">Show</button>
+      <button @click="openModalForm">Show Form</button>
       <PaymentsDisplay :items="currentElements"/>
       <MyPagination :cur="cur" :length="getPaymentsList.length" :n="n" @changePage="changePage"/>
     </main>

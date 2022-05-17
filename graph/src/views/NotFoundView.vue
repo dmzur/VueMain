@@ -8,7 +8,7 @@
       Transport 50</router-link><br>
     <router-link
       :to="{ name: 'AddPaymentForm', params: { section: 'payment', category: 'Enterteiment', }, query: { value: 2000 } }">
-      Enterteiment 2000</router-link>
+      Enterteiment 2000</router-link><br>
     <button @click="openModalAuthForm">Show</button>  
   </div>
 </template>

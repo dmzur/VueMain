@@ -12,12 +12,19 @@ const mutations = {
   },
   setCategories(state, payload){
     state.categoryList = payload
-  }
-  // ediPaymentsListFirstElement (state, payload) {
-  //   Vue.set(state.paymentList, 0, payload)
-  //   state.paymentsList[0] = payload
-  //   state.paymentsList = [...state.paymentsList]
-  // }
+  },
+  deleteDataToPaymentList(state, payload) {
+    state.paymentList = state.paymentList.filter((item) => item.id !== payload)
+  },
+  editDataToPaymentList(state, payload) {
+    state.paymentList.forEach((el) => {
+        if (el.id === payload.id) {
+            el.value = payload.value
+            el.category = payload.category
+            el.date = payload.date
+        }
+    })
+  },
 }
 
 const getters = {
@@ -44,7 +51,7 @@ export default new Vuex.Store({
               date: "23.12.2022",
               category: "Sport",
               value: i,
-              id: Math.floor(Math.random()* Math.floor(Math.random() * Date.now()) +i)
+              id: Math.floor(Math.random()* Math.floor(Math.random() * Date.now()) +50)
             })
           } resolve(items)
         },500)
