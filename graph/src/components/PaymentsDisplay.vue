@@ -18,13 +18,13 @@ export default {
   methods: {
     editItem(item) {
       this.$modal.show('addform', {
-        title: "Add New Payment", component: 'AddPaymentForm', props: {
-          item
-        }
+        title: "Add New Payment", component: 'AddPaymentForm', props: {item}
       })
+      this.$contextMenu.hide()
       console.log('edit', item)
     },
     deleteItem(item) {
+      this.$store.commit('deleteDataToPaymentList',item)
       console.log('deleteItem', item)
       //mutation delete
       this.$contextMenu.hide()

@@ -17,7 +17,6 @@
 </template>
 
 <script>
-import ContextMenu from './components/ContextMenu.vue';
 export default {
   data() {
     return {
@@ -56,7 +55,10 @@ export default {
     this.$modal.EventBus.$off('show', this.onShow)
     this.$modal.EventBus.$off('hide', this.onHide)
   },
-  components: { ModalWindowAddPaymentForm: () => import('./components/ModalWindowAddPaymentForm.vue'), ContextMenu },
+  components: {
+    ModalWindowAddPaymentForm: () => import('./components/ModalWindowAddPaymentForm.vue'),
+    ContextMenu: () => import('./components/ContextMenu.vue'),
+  },
 }
 </script>
 
