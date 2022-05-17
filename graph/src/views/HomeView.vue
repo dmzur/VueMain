@@ -5,7 +5,7 @@
       <div>Total Price = {{getFullPaymentValue}} </div>
     </header>
     <main>
-       <AddPaymentForm />
+      <button @click="openModalForm">Show</button>
       <PaymentsDisplay :items="currentElements"/>
       <MyPagination :cur="cur" :length="getPaymentsList.length" :n="n" @changePage="changePage"/>
     </main>
@@ -14,14 +14,13 @@
 
 <script>
 import PaymentsDisplay from "@/components/PaymentsDisplay.vue";
-import AddPaymentForm from "@/components/AddPaymentForm.vue";
 import { mapMutations, mapGetters } from "vuex";
 import MyPagination from "@/components/MyPagination.vue";
+
 export default {
   name: "HomeView",
   components: {
     PaymentsDisplay,
-    AddPaymentForm,
     MyPagination
 },
   data() {
@@ -45,12 +44,12 @@ export default {
     },
     changePage(p){
       this.cur = p
+    },
+    openModalForm(){
+      this.$modal.show('addform', {title: "Add New Payment", component: 'AddPaymentForm'})
     }
   },
-//  created() {
-//     this.$store.dispatch('fetchData')
-    // this.$store.commit('setPaymentsListData', this.fetchData())
-  // },
+
   mounted() {
     if(!this.$route.params?.page || isNaN(this.$route.params.page)) return
     this.cur = Number(this.$route.params.page)
