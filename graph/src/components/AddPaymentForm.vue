@@ -11,6 +11,9 @@
 <script>
 export default {
   name: "AddPaymentForm",
+  props: {
+    values: Object
+  },
   data() {
     return {
       date: "",
@@ -45,6 +48,15 @@ export default {
     await this.$store.dispatch('fetchCategoryList')
   },
   mounted() {
+if(this.values?.item) {
+      
+      const {category, date, value} = this.values.item
+      this.value = value
+      this.date = date
+      this.category = category
+      return 
+    }
+
     const {category, section} = this.$route.params
     const {value} = this.$route.query
     
