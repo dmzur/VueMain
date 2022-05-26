@@ -29,7 +29,7 @@ export default{
 <style lang="scss" scoped >
 .wrapper{
     padding: 20px;
-    position: absolute;
+    position: relative;
     top:20%;
     left: 35%;
     background: #efefef;

@@ -1,16 +1,13 @@
 <template>
-  <div :class="[$style.wrp]">
-    <div @click="onClick(cur - 1)">-</div>
-    <div
-      v-for="i in amount"
-      :key="i"
-      :class="{ [$style.active]: cur === i }"
-      @click="onClick(i)"
-    >
-      {{ i }}
+  <v-container>
+    <div :class="[$style.wrp]">
+      <div @click="onClick(cur - 1)"><v-icon>mdi-chevron-left-box</v-icon></div>
+      <div v-for="i in amount" :key="i" :class="{ [$style.active]: cur === i }" @click="onClick(i)">
+        {{ i }}
+      </div>
+      <div @click="onClick(cur + 1)"><v-icon>mdi-chevron-right-box</v-icon></div>
     </div>
-    <div @click="onClick(cur + 1)">+</div>
-  </div>
+  </v-container>
 </template>
 
 <script>
@@ -41,8 +38,10 @@ export default {
   display: flex;
   justify-content: center;
   margin-top: 20px;
-  & > div {
+
+  &>div {
     padding: 10px;
+
     &.active {
       background: #ccc;
     }

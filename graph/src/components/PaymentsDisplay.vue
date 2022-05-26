@@ -1,9 +1,19 @@
 <template>
-  <div class="paymentsList">
-    <div class="paymentItem" v-for="(item, index) in items" :key="index">
-      <span>{{ item }}</span><span class="cursor" @click="onContextMenuClick($event, item)">...</span>
-    </div>
-  </div>
+  <v-container>
+    <v-row>
+      <v-col :cols="2">#</v-col>
+      <v-col :cols="3">Date</v-col>
+      <v-col :cols="3">Category</v-col>
+      <v-col :cols="2">Value</v-col>
+    </v-row>
+    <v-row v-for="(item, index) in items" :key="index">
+      <v-col :cols="2">{{ item.id }}</v-col>
+      <v-col :cols="3">{{ item.date }}</v-col>
+      <v-col :cols="3">{{ item.category }}</v-col>
+      <v-col :cols="2">{{ item.value }}</v-col>
+      <span class="cursor" @click="onContextMenuClick($event, item)"><v-icon>mdi-dots-vertical</v-icon></span>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -18,13 +28,13 @@ export default {
   methods: {
     editItem(item) {
       this.$modal.show('addform', {
-        title: "Add New Payment", component: 'AddPaymentForm', props: {item}
+        title: "Add New Payment", component: 'AddPaymentForm', props: { item }
       })
       this.$contextMenu.hide()
       console.log('edit', item)
     },
     deleteItem(item) {
-      this.$store.commit('deleteDataToPaymentList',item)
+      this.$store.commit('deleteDataToPaymentList', item)
       console.log('deleteItem', item)
       //mutation delete
       this.$contextMenu.hide()

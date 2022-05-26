@@ -1,12 +1,10 @@
 <template>
-  <div class="form-wrapper">
-    <input v-model="date" placeholder="date" />
-    <select v-model="category" v-if="categoryList">
-      <option v-for="(value, idx) in categoryList" :key="idx">{{ value }}</option>
-    </select>
-    <input v-model.number="value" placeholder="value" />
-    <button @click="onClickSave">Save</button>
-  </div>
+  <v-card class="pa-8">
+    <v-text-field v-model="date" label="date" />
+    <v-select v-model="category" :items="categoryList" />
+    <v-text-field v-model="value" label="value" />
+    <v-btn color="teal" dark @click="onClickSave">Save</v-btn>
+</v-card>
 </template>
 <script>
 export default {
@@ -41,7 +39,7 @@ export default {
         date: this.date || this.getCurrentDate,
         category: this.category,
         value: +this.value,
-        id: this.id || Math.floor(Math.random() * Math.floor(Math.random() * Date.now()) + 50),
+        id: this.id || Math.floor(Math.random() * Math.floor(Math.random() * 99999) + 1000),
       }
       if (this.edit) {
         this.$store.commit('editDataToPaymentList', data)

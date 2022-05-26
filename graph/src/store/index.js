@@ -51,7 +51,7 @@ export default new Vuex.Store({
               date: "23.12.2022",
               category: "Sport",
               value: i,
-              id: Math.floor(Math.random()* Math.floor(Math.random() * Date.now()) +50)
+              id: Math.floor(Math.random()* Math.floor(Math.random() * 99999) +1000)
             })
           } resolve(items)
         },500)

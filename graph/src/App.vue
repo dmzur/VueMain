@@ -1,23 +1,27 @@
 <template>
-  <div id="app">
-    <nav>
-      <router-link :to="{ name: 'Dashboard', params: { page: '1' } }">Dashboard</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/notfound">notfound</router-link>
-    </nav>
-    <router-view />
+  <v-app>
+    <v-app-bar app flat>
+      <v-btn plain :ripple="false" to="/dashboard">Dashboard</v-btn>
+      <v-btn plain :ripple="false" to="/about">About</v-btn>
+    </v-app-bar>
 
-    <transition name="fade">
-      <ModalWindowAddPaymentForm :settings="settings" v-if="modalShow" />
-    </transition>
-    <transition name="fade">
-      <ContextMenu />
-    </transition>
-  </div>
+    <v-main>
+      <router-view />
+      <transition name="fade">
+        <ModalWindowAddPaymentForm :settings="settings" v-if="modalShow" />
+      </transition>
+      <transition name="fade">
+        <ContextMenu />
+      </transition>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
+
 export default {
+  name: 'App',
+
   data() {
     return {
       modalShow: false,
@@ -59,45 +63,5 @@ export default {
     ModalWindowAddPaymentForm: () => import('./components/ModalWindowAddPaymentForm.vue'),
     ContextMenu: () => import('./components/ContextMenu.vue'),
   },
-}
+};
 </script>
-
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-h1 {
-  font-size: 50px;
-}
-
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-
-  .fade-enter-active,
-  .fade-leave-active {
-    transition: opacity .5s;
-  }
-
-  .fade-enter,
-  .fade-leave-to
-
-  /* .fade-leave-active до версии 2.1.8 */
-    {
-    opacity: 0;
-  }
-}
-</style>
