@@ -1,7 +1,7 @@
 <template>
     <v-container>
         <v-row>
-            <v-col>
+            <v-col :cols="8">
                 <div class="text-h5 text-sm-h4 pb-3">My personal cost</div>
                 <v-dialog v-model="dialog" widh="500">
                     <template v-slot:activator="{ on }">
@@ -16,7 +16,8 @@
                 <PaymentsDisplay :items="currentElements" />
                 <MyPagination :cur="cur" :length="getPaymentsList.length" :n="n" @changePage="changePage" />
             </v-col>
-            <v-col>
+            <v-col :cols="4">
+                <div class="text-h5 text-sm-h4 mt-8 text-center">Диаграмма</div>
                 <BarChart />
             </v-col>
         </v-row>
