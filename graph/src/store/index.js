@@ -54,7 +54,7 @@ export default new Vuex.Store({
               id: Math.floor(Math.random()* Math.floor(Math.random() * 99999) +1000)
             })
           } resolve(items)
-        },500)
+        },0)
       }).then(res=> {
         commit('setPaymentsListData', res)
       })
