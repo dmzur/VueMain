@@ -1,7 +1,7 @@
 <template>
   <div class="context" v-if="shown" :style="styles">
     <div v-for=" item in items" :key="item.text" class="context__item" @click="onClick(item)">
-      {{ item.text }}
+      <v-btn plain :ripple="false">{{ item.text }}</v-btn>
     </div>
   </div>
 </template>
@@ -19,8 +19,8 @@ export default {
   computed: {
     styles(){
       return {
-         top: `${this.yPos + 30}px`,
-         left: `${this.xPos + 20}px`
+         top: `${this.yPos - 50}px`,
+         left: `${this.xPos + 10}px`
       }
     }
   },
@@ -57,6 +57,7 @@ export default {
 <style lang="scss" >
 .context {
   position: absolute;
+  border-radius: 10px ;
   background: #eee;
   cursor: pointer;
 }

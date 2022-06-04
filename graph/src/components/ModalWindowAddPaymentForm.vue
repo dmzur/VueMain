@@ -5,7 +5,7 @@
       <component :is="settings.component" :values="settings.props"/>
      </div>
     <div class="footer">
-      <button @click="onCloseClick">Close</button>
+      <v-btn @click="onCloseClick" v-on="on" color="teal" dark>Close</v-btn>
     </div>
   </div>
 </template>
@@ -30,8 +30,9 @@ export default{
 .wrapper{
     padding: 20px;
     position: relative;
-    top:20%;
-    left: 35%;
+    max-width: 400px;
+    bottom:50%;
+    left: 30%;
     background: #efefef;
 }
 </style>

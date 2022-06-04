@@ -68,7 +68,7 @@ export default new Vuex.Store({
             items.push({
               date: "23.12.2022",
               category: catArr[rand],
-              value: i,
+              value: Math.floor(Math.random() * Math.floor(Math.random() * 99999) + 1000),
               id: Math.floor(Math.random() * Math.floor(Math.random() * 99999) + 1000)
             })
           } resolve(items)
