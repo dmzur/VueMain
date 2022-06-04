@@ -2,13 +2,13 @@
   <v-container>
     <v-row>
       <v-col :cols="1">#</v-col>
-      <v-col :cols="1">Date</v-col>
+      <v-col :cols="2">Date</v-col>
       <v-col :cols="2">Category</v-col>
       <v-col :cols="1">Value</v-col>
     </v-row>
     <v-row v-for="(item, index) in items" :key="index">
       <v-col :cols="1">{{ item.id }}</v-col>
-      <v-col :cols="1">{{ item.date }}</v-col>
+      <v-col :cols="2">{{ item.date }}</v-col>
       <v-col :cols="2">{{ item.category }}</v-col>
       <v-col :cols="1">{{ item.value }}</v-col>
       <v-col :cols="1"><span class="cursor" @click="onContextMenuClick($event, item)"><v-icon>mdi-dots-vertical</v-icon></span></v-col>
@@ -58,6 +58,9 @@ export default {
 <style lang="scss" scoped>
 .cursor {
   cursor: pointer;
+}
+.col{
+  font-size: 1vw;
 }
 
 </style>
